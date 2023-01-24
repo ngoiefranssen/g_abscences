@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import getFecthData from '../../Api/apiAllClass'
+
+
 const Class = () => {
 
   const [classes, setClasses] = React.useState([])
