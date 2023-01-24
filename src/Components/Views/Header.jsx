@@ -18,8 +18,8 @@ const Header = () => {
             <Nav to='/absence'>Absence</Nav>
             <Nav to='/class'>Class</Nav>
             <Nav to='/student'>Student</Nav>
-            <Nav to='/justification'>Justification</Nav>
             <Nav to='/presence'>Presence</Nav>
+            <Nav to='/justification'>Justification</Nav>
           </Grid>
         </Toolbar> 
       </AppBar>

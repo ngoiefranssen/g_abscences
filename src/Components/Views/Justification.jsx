@@ -1,8 +1,19 @@
+import {
+  Table,
+  TableContainer,
+  TableHead
+} from '@mui/material'
 import React from 'react'
 
 const Justification = () => {
   return (
-    <div>Justification</div>
+   <TableContainer>
+    <Table>
+      <TableHead>
+        <></>
+      </TableHead>
+    </Table>
+   </TableContainer>
   )
 }
 
