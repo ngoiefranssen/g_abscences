@@ -79,7 +79,7 @@ const Class = () => {
                 <TableCell>{c.numero}</TableCell>
                 <TableCell>
                   <Link to={`/editclass/${c.id}`}><EditIcon/></Link>
-                  <Button onClick={() => deleteClass()}>
+                  <Button onClick={() => deleteClass(c.id)}>
                     <DeleteIcon sx={{ ml: '15px', color:'error' }}/>
                   </Button>
                 </TableCell>
