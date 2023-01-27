@@ -73,13 +73,13 @@ const Class = () => {
           {
             classes
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            ?.map((c)=>(
-              <TableRow key={c.id}>
-                <TableCell>{c.id}</TableCell>
-                <TableCell>{c.numero}</TableCell>
+            ?.map((cl) => (
+              <TableRow key={cl.id}>
+                <TableCell>{cl.id}</TableCell>
+                <TableCell>{cl.numero}</TableCell>
                 <TableCell>
-                  <Link to={`/editclass/${c.id}`}><EditIcon/></Link>
-                  <Button onClick={() => deleteClass(c.id)}>
+                  <Link to={`/editclass/${cl.id}`}><EditIcon/></Link>
+                  <Button onClick={() => deleteClass(cl.id)}>
                     <DeleteIcon sx={{ ml: '15px', color:'error' }}/>
                   </Button>
                 </TableCell>
