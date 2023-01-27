@@ -21,7 +21,7 @@ const AddClass = () => {
 
   const handleValueChange = (e) => {
     e.preventDefault()
-    setPostClass({ ...postClass, [e.target.name] : e.target.value})
+    setPostClass({ ...postClass, [e.target.name] : e.target.value })
   }
 
   const handleValueOnClick = async () =>{
@@ -35,7 +35,7 @@ const AddClass = () => {
         id="standard-basic"
         label="Number"
         name='numero'
-        type='number'
+        type='text'
         variant="standard"
         onChange = { (e) => handleValueChange(e) }
       />

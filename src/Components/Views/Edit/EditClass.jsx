@@ -1,7 +1,7 @@
 import { TextField, FormGroup, FormControl, Button, styled } from '@mui/material'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { editClass, getFecthData } from '../../../Api/apiAllClass'
+import { apiEditClass, getFecthData } from '../../../Api/apiAllClass'
 
 const FormStyledContainer = styled(FormGroup)`
   width : 50%;
@@ -17,39 +17,42 @@ const initialValue = {
 
 const EditClass = () => {
 
-  const[postClass, setPostClass] = React.useState(initialValue)
+  const[eclass, setEditClass] = React.useState(initialValue)
   const nagivate = useNavigate()
   const { id } = useParams()
 
   const handleValueChange = (e) => {
     e.preventDefault()
-    setPostClass({ ...postClass, [e.target.name] : e.target.value})
+    setEditClass({ ...eclass, [e.target.name] : e.target.value })
   }
 
-  React.useEffect((id) =>{
-     const handleGetData = async () => {
-        var res = await getFecthData(id)
-        setPostClass(res.data)
-    }
+  React.useEffect(() => {
     handleGetData()
   },[])
 
+  const handleGetData = async () => {
+    let res = await getFecthData(id)
+    // console.log(res?.data?.Data)
+    setEditClass(res?.data?.Data)
+  }
+
   const handleValueOnClick = async () =>{
-    await editClass(postClass, id)
+    await apiEditClass(eclass, id)
+    console.log(eclass ,id)
     nagivate('/class')
   }
   return (
     <FormStyledContainer>
-    <FormControl>
-      <TextField
-        id="standard-basic"
-        label="Number"
-        name='numero'
-        type='number'
-        variant="standard"
-        value={postClass.numero}
-        onChange = { (e) => handleValueChange(e) }
-      />
+      <FormControl>
+        <TextField
+          id="standard-basic"
+          label="Number"
+          name='numero'
+          type='text'
+          variant="standard"
+          value={eclass.numero}
+          onChange = { (e) => handleValueChange(e) }
+        />
     </FormControl>
     <FormControl>
       <Button variant='contained' onClick={ () => handleValueOnClick() }>

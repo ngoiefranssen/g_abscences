@@ -32,17 +32,17 @@ function App() {
         <Route path='/presence' element={<Presence />} />
         <Route path='/student' element={<Student />} />
         {/* address add Element */}
-        <Route path='/addabsence_' element={<AddAbsence />} />
+        <Route path='/addabsence' element={<AddAbsence />} />
         <Route path='/addclass' element={<AddClass />} />
-        <Route path='/addjustification_' element={<AddJustification />} />
-        <Route path='/addpresence_' element={<AddPresence />} />
-        <Route path='/addstudent_' element={<AddStudent />} />
+        <Route path='/addjustification' element={<AddJustification />} />
+        <Route path='/addpresence' element={<AddPresence />} />
+        <Route path='/addstudent' element={<AddStudent />} />
         {/* address edit element*/}
-        <Route path='/editabsence_/:id' element={<EditAbsence />} />
+        <Route path='/editabsence/:id' element={<EditAbsence />} />
         <Route path='/editclass/:id' element={<EditClass />} />
-        <Route path='/editjustification_/:id' element={<EditJustification />} />
-        <Route path='/editpresence_/:id' element={<EditPresence />} />
-        <Route path='/editstudent_/:id' element={<EditStudent />} />
+        <Route path='/editjustification/:id' element={<EditJustification />} />
+        <Route path='/editpresence/:id' element={<EditPresence />} />
+        <Route path='/editstudent/:id' element={<EditStudent />} />
       </Routes>
     </BrowserRouter >
   );
