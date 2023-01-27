@@ -1,5 +1,7 @@
 import { Button, FormControl, FormGroup, styled, TextField } from '@mui/material'
+import { postClassData } from '../../../Api/apiAllClass'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const FormStyledContainer = styled(FormGroup)`
   width : 50%;
@@ -8,51 +10,38 @@ const FormStyledContainer = styled(FormGroup)`
     margin : 10px;
   }
 `
+const initialValue = {
+  numero : ''
+}
 
 const AddClass = () => {
+  
+  const nagivate = useNavigate()
+  const[postClass, setPostClass] = React.useState(initialValue)
+
+  const handleValueChange = (e) => {
+    e.preventDefault()
+    setPostClass({ ...postClass, [e.target.name] : e.target.value})
+  }
+
+  const handleValueOnClick = async () =>{
+    await postClassData(postClass)
+    nagivate('/class')
+  }
   return (
     <FormStyledContainer>
     <FormControl>
       <TextField
         id="standard-basic"
-        label="Name"
-        // name='name'
+        label="Number"
+        name='numero'
+        type='number'
         variant="standard"
-        // onChange = { (e) => handleValueChange(e) }
+        onChange = { (e) => handleValueChange(e) }
       />
     </FormControl>
     <FormControl>
-      <TextField
-        id="standard-basic"
-        label="Username"
-        // name='username'
-        variant="standard"
-        // onChange = { (e) => handleValueChange(e) }
-      />
-    </FormControl>
-    <FormControl>
-      <TextField
-        id="standard-basic"
-        label="Email"
-        // name='email'
-        variant="standard"
-        // onChange = { (e) => handleValueChange(e) }
-      />    
-    </FormControl>
-    <FormControl>
-      <TextField
-        id="standard-basic"
-        label="Phone"
-        // name='phone'
-        variant="standard"
-        // onChange = { (e) => handleValueChange(e) }
-      />
-    </FormControl>
-    <FormControl>
-      <Button
-        variant='contained'
-        // onClick={ () => handleValueOnClick() }
-      >
+      <Button variant='contained' onClick={ () => handleValueOnClick() }>
         Register
       </Button>
     </FormControl>

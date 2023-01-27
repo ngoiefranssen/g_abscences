@@ -33,13 +33,13 @@ function App() {
         <Route path='/student' element={<Student />} />
         {/* address add Element */}
         <Route path='/addabsence_' element={<AddAbsence />} />
-        <Route path='/addclass_' element={<AddClass />} />
+        <Route path='/addclass' element={<AddClass />} />
         <Route path='/addjustification_' element={<AddJustification />} />
         <Route path='/addpresence_' element={<AddPresence />} />
         <Route path='/addstudent_' element={<AddStudent />} />
         {/* address edit element*/}
         <Route path='/editabsence_/:id' element={<EditAbsence />} />
-        <Route path='/editclass_/:id' element={<EditClass />} />
+        <Route path='/editclass/:id' element={<EditClass />} />
         <Route path='/editjustification_/:id' element={<EditJustification />} />
         <Route path='/editpresence_/:id' element={<EditPresence />} />
         <Route path='/editstudent_/:id' element={<EditStudent />} />

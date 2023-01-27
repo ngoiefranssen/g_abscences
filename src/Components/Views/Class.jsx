@@ -14,7 +14,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
-import getFecthData from '../../Api/apiAllClass'
+import { getFecthData, delClass } from '../../Api/apiAllClass'
 
 
 const Class = () => {
@@ -24,12 +24,16 @@ const Class = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
   React.useEffect(() =>{
-    handleFecthDataGet();
+    let subscriber=true
+    if(subscriber)
+    handleDataGet();
+    return()=>subscriber=false
   }, []);
 
-  const handleFecthDataGet = async () => {
-    const response = await getFecthData()
-    setClasses(response.data)
+  const handleDataGet = async () => {
+    const res = await getFecthData();
+    setClasses(res?.data?.Data)
+    // console.log(res.data?.Data)
   }
 
   const handleChangePerPage = (event, newPage) => {
@@ -39,48 +43,54 @@ const Class = () => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-  const emptyRows =  rowsPerPage - Math.min(rowsPerPage, classes.length - page * rowsPerPage)
+
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, classes.length - page * rowsPerPage)
+  
+  const deleteClass = async (id) => {
+    await delClass(id)
+    handleDataGet();
+  }
 
   return (
-    <div>
       <TableContainer
         component={Paper}
         sx={{
           width : '55%',
           margin : '50px auto 0 auto'
-          }}
-      >
-        <Link to='/addclass_' sx={{  }}>
-        <Button>new Class</Button>
+        }}>
+        <Link to='/addclass'>
+          <Button>new Class</Button>
         </Link>
-      <Table  aria-label="a dense table"  >
+      <Table aria-label="a dense table">
         <TableHead size="small">
           <TableRow> {/** sx={{ bgcolor: '#0F0807' }} **/}
             <TableCell>Id</TableCell>
-            <TableCell>Name_Categories</TableCell>
+            <TableCell>Number</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {
             classes
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((class_, index) => (
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+            // ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ?.map((c)=>(
+              <TableRow key={c.id}>
+                <TableCell>{c.id}</TableCell>
+                <TableCell>{c.numero}</TableCell>
                 <TableCell>
-                  <Link><EditIcon /></Link>
-                  <Button><DeleteIcon sx={{ ml: '15px', color:'error' }} /></Button>
+                  <Link to={`/editclass/${c.id}`}><EditIcon/></Link>
+                  <Button onClick={() => deleteClass()}>
+                    <DeleteIcon sx={{ ml: '15px', color:'error' }}/>
+                  </Button>
                 </TableCell>
               </TableRow>
             )) 
           }
           {
-          emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
+            emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6}/>
+              </TableRow>
             )
           }
         </TableBody>
@@ -89,7 +99,7 @@ const Class = () => {
             <TablePagination
               component='div'
               page = {page}
-              rowsPerPageOptions = {[5, 10, 15]}
+              rowsPerPageOptions = {[1]}
               rowsPerPage = {rowsPerPage}
               count = {classes.length}
               onPageChange = {handleChangePerPage}
@@ -99,8 +109,6 @@ const Class = () => {
         </TableFooter>
       </Table>
     </TableContainer>
-    </div>
-   
   )
 }
 
