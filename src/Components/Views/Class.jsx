@@ -26,8 +26,8 @@ const Class = () => {
   React.useEffect(() =>{
     let subscriber=true
     if(subscriber)
-    handleDataGet();
-    return()=>subscriber=false
+      handleDataGet();
+      return()=>subscriber=false
   }, []);
 
   const handleDataGet = async () => {
@@ -61,8 +61,8 @@ const Class = () => {
         <Link to='/addclass'>
           <Button>new Class</Button>
         </Link>
-      <Table aria-label="a dense table">
-        <TableHead size="small">
+      <Table aria-label="a dense table" size="small">
+        <TableHead>
           <TableRow> {/** sx={{ bgcolor: '#0F0807' }} **/}
             <TableCell>Id</TableCell>
             <TableCell>Number</TableCell>
@@ -72,7 +72,7 @@ const Class = () => {
         <TableBody>
           {
             classes
-            // ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((c)=>(
               <TableRow key={c.id}>
                 <TableCell>{c.id}</TableCell>
@@ -99,7 +99,7 @@ const Class = () => {
             <TablePagination
               component='div'
               page = {page}
-              rowsPerPageOptions = {[1]}
+              rowsPerPageOptions = {[5, 10, 25]}
               rowsPerPage = {rowsPerPage}
               count = {classes.length}
               onPageChange = {handleChangePerPage}
