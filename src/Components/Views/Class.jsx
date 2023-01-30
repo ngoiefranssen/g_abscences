@@ -11,7 +11,8 @@ import {
   TableRow,
 } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { getFecthData, delClass } from '../../Api/apiAllClass'
@@ -19,7 +20,9 @@ import { getFecthData, delClass } from '../../Api/apiAllClass'
 
 const Class = () => {
 
+  // const history=()
   const [classes, setClasses] = React.useState([])
+  const navigate = useNavigate()
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
@@ -50,7 +53,24 @@ const Class = () => {
     await delClass(id)
     handleDataGet();
   }
+  // console.log("OBJET", classes)
+  // const editRow = (e) => {
+  //   if(e){
+  //     console.log("object selectionne", e);
+  //     // handleEdit(false)
+  //   }
 
+  //   // e.preventDefault()
+  //   // setEditClass({ ...eclass, [e.target.name] : e.target.value })
+  //   debugger
+  // }
+const handleSendOjectToparam=(objToSend)=>{
+  console.log("object here:",objToSend)
+  // history.push({pathname:`/editclass/${objToSend?.id}`,state:{...objToSend} })
+  // navigate(`/editclass/${objToSend?.id}`,objToSend)
+  navigate('/justification')
+  
+} 
   return (
       <TableContainer
         component={Paper}
@@ -75,10 +95,13 @@ const Class = () => {
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             ?.map((cl) => (
               <TableRow key={cl.id}>
-                <TableCell>{cl.id}</TableCell>
-                <TableCell>{cl.numero}</TableCell>
+                <TableCell>{cl?.id? cl?.id : ""}</TableCell>
+                <TableCell>{cl?.numero ? cl.numero : ""}</TableCell>
                 <TableCell>
-                  <Button to={`/editclass/${cl.id}`} component={Link}>
+                {/* <Button onClick={()=>navigate(`/editclass/${cl.id}`, {state : {...cl}})}> */}
+                  {/* <Button onClick={ () => navigate(`/addclass`, {state: { ...cl}}) }> */}
+                  <Button  onClick={()=>navigate('/justification')} component={Link}>
+                  {/* <Button onClick={ () => editRow(cl) }> */}
                     <EditIcon/>
                   </Button>
                   <Button onClick={() => deleteClass(cl.id)} color='error'>

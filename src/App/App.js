@@ -26,6 +26,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/absence' element={<Absence />} />
         <Route path='/class' element={<Class />} />
         <Route path='/justification' element={<Justification />} />

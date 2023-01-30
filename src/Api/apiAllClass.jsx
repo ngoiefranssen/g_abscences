@@ -15,10 +15,12 @@ export const getFecthData = async () => {
 // api post class
 
 const API_KEY_POST = 'http://192.168.10.58:8040/postClasse/api/v1'
+// const API_KEY_POST = 'http://192.168.10.58:8040/postClasse/api'
 
 export const postClassData = async (data) => {
     try {
         return axios.post(API_KEY_POST, data)
+        // return axios.post(`${API_KEY_POST}/v1`, data)
     } catch (error) {
         console.log('Error while calling post user api', error.message)
     }
@@ -28,6 +30,7 @@ export const postClassData = async (data) => {
 const API_KEY_EDIT = 'http://192.168.10.58:8040/classe/api/upDate'
 
 export const apiEditClass = async (data, id) => {
+    debugger
     try {
         return axios.put(`${API_KEY_EDIT}/${id}`, data)
     } catch (error) {
@@ -35,7 +38,7 @@ export const apiEditClass = async (data, id) => {
     }
 }
 
-// delete
+// api delete class
 const API_KEY_DELETE = 'http://192.168.10.58:8040/classe/api/delete'
 
 export const delClass = async (id) =>{

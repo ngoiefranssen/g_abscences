@@ -15,6 +15,7 @@ const Header = () => {
         <Toolbar>
           <Grid container>
             <Grid item xs={3}></Grid>
+            <Nav to='/'>Home</Nav>
             <Nav to='/absence'>Absence</Nav>
             <Nav to='/class'>Class</Nav>
             <Nav to='/student'>Student</Nav>

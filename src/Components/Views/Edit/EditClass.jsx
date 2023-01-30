@@ -1,6 +1,6 @@
 import { TextField, FormGroup, FormControl, Button, styled } from '@mui/material'
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams,useLocation} from 'react-router-dom'
 import { apiEditClass, getFecthData } from '../../../Api/apiAllClass'
 
 const FormStyledContainer = styled(FormGroup)`
@@ -16,29 +16,32 @@ const initialValue = {
 }
 
 const EditClass = () => {
-
+ 
+  const location = useLocation()
+  location?.state && console.log("state", location?.state);
+  
   const[eclass, setEditClass] = React.useState(initialValue)
   const nagivate = useNavigate()
   const { id } = useParams()
+  
 
   const handleValueChange = (e) => {
     e.preventDefault()
     setEditClass({ ...eclass, [e.target.name] : e.target.value })
   }
-
+  
   React.useEffect(() => {
     handleGetData()
   },[])
 
   const handleGetData = async () => {
     let res = await getFecthData(id)
-    // console.log(res?.data?.Data)
     setEditClass(res?.data?.Data)
   }
 
-  const handleValueOnClick = async () =>{
+  const handleValueOnClick = async () =>{ 
+    debugger
     await apiEditClass(eclass, id)
-    console.log(eclass ,id)
     nagivate('/class')
   }
   return (
@@ -53,13 +56,14 @@ const EditClass = () => {
           value={eclass.numero}
           onChange = { (e) => handleValueChange(e) }
         />
-    </FormControl>
-    <FormControl>
-      <Button variant='contained' onClick={ () => handleValueOnClick() }>
-        Register
+      </FormControl>
+      <FormControl>
+        <Button variant='contained' onClick={ () => handleValueOnClick() }
+        >
+          Register
       </Button>
     </FormControl>
-</FormStyledContainer>
+    </FormStyledContainer>
   )
 }
 

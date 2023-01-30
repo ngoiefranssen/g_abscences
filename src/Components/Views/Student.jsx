@@ -40,12 +40,12 @@ const Student = () => {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Id</TableCell>
+            <TableCell>#</TableCell>
             <TableCell>Name_student</TableCell>
             <TableCell>Lastname</TableCell>
             <TableCell>DateNaissance</TableCell>
-            <TableCell>Name_class</TableCell>
             <TableCell>Date</TableCell>
+            <TableCell>Number_classes</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
