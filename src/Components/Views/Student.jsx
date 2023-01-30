@@ -14,9 +14,12 @@ import { Link } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
+
 const Student = () => {
 
-  const [students, setStudents] = React.useState([])
+  const [students, setStudents] = React.useState([
+    
+  ]);
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
   

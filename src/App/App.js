@@ -20,6 +20,7 @@ import EditPresence from '../Components/Views/Edit/EditPresence'
 import EditStudent from '../Components/Views/Edit/EditStudent'
 
 import './App.css';
+import Home from '../Components/Pages/Home'
 
 function App() {
   return (

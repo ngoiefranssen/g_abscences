@@ -64,13 +64,12 @@ const Class = () => {
   //   // setEditClass({ ...eclass, [e.target.name] : e.target.value })
   //   debugger
   // }
-const handleSendOjectToparam=(objToSend)=>{
-  console.log("object here:",objToSend)
-  // history.push({pathname:`/editclass/${objToSend?.id}`,state:{...objToSend} })
-  // navigate(`/editclass/${objToSend?.id}`,objToSend)
-  navigate('/justification')
-  
-} 
+// const handleSendOjectToparam=(objToSend)=>{
+//   console.log("object here:",objToSend)
+//   // history.push({pathname:`/editclass/${objToSend?.id}`,state:{...objToSend} })
+//   // navigate(`/editclass/${objToSend?.id}`,objToSend)
+//   navigate('/justification')
+// } 
   return (
       <TableContainer
         component={Paper}
@@ -100,8 +99,9 @@ const handleSendOjectToparam=(objToSend)=>{
                 <TableCell>
                 {/* <Button onClick={()=>navigate(`/editclass/${cl.id}`, {state : {...cl}})}> */}
                   {/* <Button onClick={ () => navigate(`/addclass`, {state: { ...cl}}) }> */}
-                  <Button  onClick={()=>navigate('/justification')} component={Link}>
+                  {/* <Button onClick={()=>navigate('/justification')} component={Link}> */}
                   {/* <Button onClick={ () => editRow(cl) }> */}
+                  <Button to={`/editclass/${cl.id}`} component={Link}>
                     <EditIcon/>
                   </Button>
                   <Button onClick={() => deleteClass(cl.id)} color='error'>
