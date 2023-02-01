@@ -7,11 +7,11 @@ import Justification from '../Components/Views/Justification'
 import Presence from '../Components/Views/Presence'
 import Student from '../Components/Views/Student'
 // 
-import AddAbsence from '../Components/Views/Add/AddAbsence'
+import MuiFormAddOrEditAbsence from '../Components/Views/Add/MuiFormAddOrEditAbsence'
 import AddClass from '../Components/Views/Add/AddClass'
 import AddJustification from '../Components/Views/Add/AddJustification'
-import AddPresence from '../Components/Views/Add/AddPresence'
-import AddStudent from '../Components/Views/Add/AddStudent'
+import MuiFormAddOrEditPresence from '../Components/Views/Add/MuiFormAddOrEditPresence'
+import MuiFormAddOrEditStudent from '../Components/Views/Add/MuiFormAddOrEditStudent'
 //
 import EditAbsence from '../Components/Views/Edit/EditAbsence'
 import EditClass from '../Components/Views/Edit/EditClass'
@@ -34,11 +34,11 @@ function App() {
         <Route path='/presence' element={<Presence />} />
         <Route path='/student' element={<Student />} />
         {/* address add Element */}
-        <Route path='/addabsence' element={<AddAbsence />} />
+        <Route path='/addabsence' element={<MuiFormAddOrEditAbsence />} />
         <Route path='/addclass' element={<AddClass />} />
         <Route path='/addjustification' element={<AddJustification />} />
-        <Route path='/addpresence' element={<AddPresence />} />
-        <Route path='/addstudent' element={<AddStudent />} />
+        <Route path='/addpresence' element={<MuiFormAddOrEditPresence />} />
+        <Route path='/addstudent' element={<MuiFormAddOrEditStudent />} />
         {/* address edit element*/}
         <Route path='/editabsence/:id' element={<EditAbsence />} />
         <Route path='/editclass/:id' element={<EditClass />} />

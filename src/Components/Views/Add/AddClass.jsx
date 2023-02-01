@@ -30,22 +30,22 @@ const AddClass = () => {
   }
   return (
     <FormStyledContainer>
-    <FormControl>
-      <TextField
-        id="standard-basic"
-        label="Number"
-        name='numero'
-        type='text'
-        variant="standard"
-        onChange = { (e) => handleValueChange(e) }
-      />
-    </FormControl>
-    <FormControl>
-      <Button variant='contained' onClick={ () => handleValueOnClick() }>
-        Register
-      </Button>
-    </FormControl>
-</FormStyledContainer>
+      <FormControl>
+        <TextField
+          id="standard-basic"
+          label="Number"
+          name='numero'
+          type='text'
+          variant="standard"
+          onChange = { (e) => handleValueChange(e) }
+        />
+      </FormControl>
+      <FormControl>
+        <Button variant='contained' onClick={ () => handleValueOnClick() }>
+          Register
+        </Button>
+      </FormControl>
+    </FormStyledContainer>
   )
 }
 

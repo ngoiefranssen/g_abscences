@@ -1,0 +1,45 @@
+import axios from "axios"
+
+// api get all students
+const API_KEY_GET = 'http://192.168.10.58:8040/listeEleve/api/v1/1'
+
+export const getAll = async () =>{
+    try {
+        return axios.get(API_KEY_GET)
+    } catch (error) {
+        console.log('Error while calling get user api', error.message)
+    }
+}
+
+// api post student
+const API_KEY_POST = 'http://192.168.10.58:8040/postEleve/api/v1'
+
+export const postData = async (data) => {
+    try {
+        return axios.post(API_KEY_POST, data)
+    } catch (error) {
+        console.log('Error while calling post user api', error.message)
+    }
+}
+
+// api update student
+const API_KEY_UPDATE = 'http://192.168.10.58:8040/eleveUpdate/api/v1'
+
+export const updateDate = async (date, id) => {
+    try {
+        return axios.put(`${API_KEY_UPDATE}/${id}`, date)
+    } catch (error) {
+        console.log('Error while calling update user api', error.message)
+    }
+}
+
+// api delete
+const API_KEY_DELETE = 'http://192.168.10.58:8040/eleveDelete/api/v1'
+
+export const deleteData = async (id) => {
+    try {
+        return axios.delete(`${API_KEY_DELETE}/${id}`)
+    } catch (error) {
+        console.log('Error while calling update user api', error.message)
+    }
+}
