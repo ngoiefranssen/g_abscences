@@ -11,8 +11,8 @@ import {
   TableRow,
 } from '@mui/material'
 import React from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useHistory } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom'
+// import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { getFecthData, delClass } from '../../Api/apiAllClass'
@@ -36,7 +36,7 @@ const Class = () => {
   const handleDataGet = async () => {
     const res = await getFecthData();
     setClasses(res?.data?.Data)
-    // console.log(res.data?.Data)
+    console.log(res.data?.Data)
   }
 
   const handleChangePerPage = (event, newPage) => {
@@ -70,6 +70,7 @@ const Class = () => {
 //   // navigate(`/editclass/${objToSend?.id}`,objToSend)
 //   navigate('/justification')
 // } 
+
   return (
       <TableContainer
         component={Paper}

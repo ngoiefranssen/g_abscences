@@ -2,6 +2,7 @@ import {
   Button,
   Grid,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -10,21 +11,23 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TextField,
 } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
-import { getAll } from '../../Api/apiAllStudent'
+import { deleteStudentData, getAll } from '../../Api/apiAllStudent'
 import MuiFormAddOrEditStudent from '../Views/Add/MuiFormAddOrEditStudent'
 
+const Student = (/* initialValues */) => {
 
-
-const Student = () => {
-
+ /*  const [values, setValues] = React.useState(initialValues)
+  const [open, setOpen] = React.useState(false); */
   const [students, setStudents] = React.useState([]);
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
+  // const [search, setSearch] = React.useState('')
 
   React.useEffect(() =>{
     let subscriber = true
@@ -45,13 +48,26 @@ const Student = () => {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
+  
+
+  // const handleEditRow = () => {
+
+  // }
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, students.length - page * rowsPerPage) 
 
+  const deleteStudent = async (id) => {
+    await deleteStudentData(id)
+    handleFetchAllDatas()
+  }
+
   return (
-    <Grid sx={{ margin : '50px auto 0 auto' }}>
-    <Grid position='revert-layer' width="10%" marginLeft={150}>
-    <MuiFormAddOrEditStudent />
+    <Stack sx={{ margin : '50px auto 0 auto' }}>
+    <Grid position='revert-layer' width="10%" height={20} marginLeft={141}>
+      {/* <form>
+        <TextField variant="contained" onChange={ (e) => setSearch(e.target.value) } />
+      </form> */}
+        <MuiFormAddOrEditStudent />
     </Grid>
       <TableContainer component={Paper}
         sx={{
@@ -74,9 +90,14 @@ const Student = () => {
           <TableBody>
             {
               students
+              // ?.filter((item) => {
+              //   return search.toLowerCase() === ''
+              //     ? item
+              //     : item.nom.toLowerCase().includes(search);
+              // })
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.map((student, index) =>(
-                <TableRow key={student.id}>
+                <TableRow key={index}>
                   <TableCell>{student.id}</TableCell>
                   <TableCell>{student.nom}</TableCell>
                   <TableCell>{student.prenom}</TableCell>
@@ -84,8 +105,10 @@ const Student = () => {
                   <TableCell>{student.date}</TableCell>
                   <TableCell>{student.eleves.nomClasse}</TableCell>
                   <TableCell>
-                    <Button component={Link}><EditIcon /></Button>
-                    <Button><DeleteIcon sx={{ ml: '15px', color:'red' }} /></Button>
+                    <Button component={Link} /* onClick={ (student)=> handleEditRow()} */><EditIcon /></Button>
+                    <Button onClick={ () => deleteStudent(student.id) }>
+                      <DeleteIcon sx={{ ml: '15px', color:'red' }} />
+                      </Button>
                   </TableCell>
                 </TableRow>
               ))
@@ -113,7 +136,7 @@ const Student = () => {
           </TableFooter>
         </Table>
       </TableContainer>
-    </Grid>
+    </Stack>
     
   )
 }

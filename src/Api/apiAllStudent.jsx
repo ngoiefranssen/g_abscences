@@ -36,7 +36,7 @@ export const updateDate = async (date, id) => {
 // api delete
 const API_KEY_DELETE = 'http://192.168.10.58:8040/eleveDelete/api/v1'
 
-export const deleteData = async (id) => {
+export const deleteStudentData = async (id) => {
     try {
         return axios.delete(`${API_KEY_DELETE}/${id}`)
     } catch (error) {

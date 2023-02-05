@@ -9,7 +9,8 @@ import DialogActions from '@mui/material/DialogActions';
 // import { Box, InputLabel, MenuItem, Select } from '@mui/material';
 import { UseForm, Form } from '../../../controls/UseForm'
 import Controllers from '../../../controls/Controllers'
-import { Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
+import { AirplanemodeInactiveRounded } from '@mui/icons-material';
 
 const initialValues = {
   name: "",
@@ -22,10 +23,10 @@ const initialValues = {
 
 const MuiFormAddOrEditStudent = () => {
 
-  const [students, setStudents] = React.useState(initialValues)
+  // const [values, setValues] = React.useState(initialValues)
   const [open, setOpen] = React.useState(false);
   const [classes, setClasses] = React.useState('')
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -59,41 +60,53 @@ const MuiFormAddOrEditStudent = () => {
     }
     // resetForm()
   }
+  React.useE
 
+  const handleEdit = async () => {
+    await AirplanemodeInactiveRounded(id)
+    getComputedStyle()
+  }
   const handleOnSubmitAddOrEdit = (e) => {
     e.preventDefault()
     // if(){}
   }
 
+  React.useEffect(()=>{
+    // if(id){
+    //   setValues()
+    // }
+  },[])
+
   return (
-    <di>
-      <Button variant="outlined" onClick={handleClickOpen}>
-          Add
+    <>
+      <Button variant="contained" fullWidth onClick={handleClickOpen}>
+          Add classe
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <Form onSumit={handleOnSubmitAddOrEdit}>
-          <TextField
-            autoFocus
-                  margin="dense"
-                  name='name'
-                  id="name"
-                  label="Name student"
-                  // type="name"
-                  value={values.name}
-                  fullWidth
-                  variant="outlined"
-          />
-          <TextField
-            autoFocus
-                  margin="dense"
-                  name='lastname'
-                  id="lastname"
-                  label="Last name student"
-                  // type="name"
-                  fullWidth
-                  value={values.lastname}
-                  variant="outlined"
-          />
+          <Stack align="center">
+            <TextField
+            // autoFocus
+              margin="dense"
+              name='name'
+              // id="name"
+              label="Name student"
+              // type="name"
+              value={values.name}
+              // fullWidth
+              variant="outlined"
+            />
+            <TextField
+              // autoFocus
+              margin="dense"
+              name='lastname'
+              // id="lastname"
+              label="Last name student"
+              // type="name"
+              // fullWidth
+              value={values.lastname}
+              variant="outlined"
+            />
           <Controllers.MuiDatePickers
             name="dn"
             label="Hire Date"
@@ -102,20 +115,21 @@ const MuiFormAddOrEditStudent = () => {
             variant="outlined"
           />
           <Controllers.Select
-          
             name="classeID"
             label="Name classes"
             value={values.classe.id}
             onChange={handleInputChange}
             // options={nomClasse}
           />
+          </Stack>
+          
           <DialogActions>
             <Controllers.Button type="submit" text="Save"/>
             <Controllers.Button onClick={handleClose} text="Cancel" />
           </DialogActions>
         </Form>
       </Dialog>
-    </di>
+    </>
   );
 }
 

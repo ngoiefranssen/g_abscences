@@ -7,7 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 const MuiDatePickers = (props) => {
 
   const { name, label, value, onChange } = props
-  const convertToDefEventPara = (name, value) => ({
+  const convertToDefEventParam = (name, value) => ({
     target: {
       name, value
     },
@@ -20,7 +20,7 @@ const MuiDatePickers = (props) => {
           label= {label}
           name={name}
           value={value}
-          onChange={(date) => onChange(convertToDefEventPara(name, date))}
+          onChange={(date) => onChange(convertToDefEventParam(name, date))}
           renderInput={(params) => <TextField {...params} helperText="Clear Initial State"/>}
         />
       </Stack>
