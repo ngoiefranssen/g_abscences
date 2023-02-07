@@ -25,7 +25,7 @@ export const postDataStudent = async (data) => {
 // api update student
 const API_KEY_UPDATE = 'http://192.168.10.61:8040/eleveUpdate/api/v1'
 
-export const updateDate = async (date, id) => {
+export const updateDataStudent = async (date, id) => {
     try {
         return axios.put(`${API_KEY_UPDATE}/${id}`, date)
     } catch (error) {

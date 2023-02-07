@@ -11,7 +11,6 @@ import { Form } from '../../../controls/UseForm'
 import Controllers from '../../../controls/Controllers'
 import { Stack } from '@mui/material';
 import { getAll } from '../../../Api/apiAllStudent';
-import { editableInputTypes } from '@testing-library/user-event/dist/utils';
 
 const MuiFormAddOrEditStudent = ({
   student,
@@ -19,7 +18,7 @@ const MuiFormAddOrEditStudent = ({
   // setOpen,
   handleClose,
   handleClickOpen,
-  handleSumbitElement,
+  handleSumbitElementAddOrEdit,
   handleInputChange,
   handleInputChangeSelect
 }) => {
@@ -37,10 +36,9 @@ const MuiFormAddOrEditStudent = ({
         Newstudent
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <Form onSumit={handleSumbitElement}>
+        <Form onSumit={handleSumbitElementAddOrEdit}>
           <Stack align="center">
             <TextField
-            // autoFocus
               margin="dense"
               name='name'
               id="name"
@@ -52,13 +50,12 @@ const MuiFormAddOrEditStudent = ({
               onChange={handleInputChange}
             />
             <TextField
-              // autoFocus
               margin="dense"
               name='lastname'
-              // id="lastname"
+              id="lastname"
               label="Last name student"
-              // type="name"
-              // fullWidth
+              type="text"
+              fullWidth
               value={student.lastname}
               variant="outlined"
               onChange={handleInputChange}

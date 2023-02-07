@@ -2,7 +2,6 @@ import {
   Button,
   Grid,
   Paper,
-  Stack,
   styled,
   Table,
   TableBody,
@@ -11,13 +10,12 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  TextField,
 } from '@mui/material'
 import React from 'react'
 // import { Link } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
-import { deleteStudentData, getAll, postDataStudent } from '../../Api/apiAllStudent'
+import { deleteStudentData, getAll, postDataStudent, updateDataStudent } from '../../Api/apiAllStudent'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import MuiFormAddOrEditStudent from '../Views/Add/MuiFormAddOrEditStudent'
 
@@ -100,20 +98,20 @@ const Student = (/* initialValues */) => {
     setOpen(false);
   };
 
-  const handleEditToRow = (row) => {
-    setStudent(row)
+  const handleEditToRow = async (row) => {
+    await updateDataStudent(student ,row)
+    // setStudent(row)
   }
 
   const handlePostElement = async () => {
     await postDataStudent(student)
   }
   
-  const handleSumbitElement = () => {
+  const handleSumbitElementAddOrEdit = () => {
     if(student?.id){
-
+      handleEditToRow()
     }else{
       handlePostElement()
-      
     }
   }
 
@@ -136,7 +134,7 @@ const Student = (/* initialValues */) => {
           setOpen={setOpen}
           handleClose={handleClose}
           handleClickOpen={handleClickOpen}
-          handleSumbitElement={handleSumbitElement}
+          handleSumbitElementAddOrEdit={handleSumbitElementAddOrEdit}
           handleInputChange={handleInputChange}
           handleInputChangeSelect={handleInputChangeSelect}
         />
