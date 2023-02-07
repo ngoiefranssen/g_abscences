@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // api get all students
-const API_KEY_GET = 'http://192.168.10.58:8040/listeEleve/api/v1/1'
+const API_KEY_GET = 'http://192.168.10.61:8040/listeEleve/api/v1/1'
 
 export const getAll = async () =>{
     try {
@@ -12,9 +12,9 @@ export const getAll = async () =>{
 }
 
 // api post student
-const API_KEY_POST = 'http://192.168.10.58:8040/postEleve/api/v1'
+const API_KEY_POST = 'http://192.168.10.61:8040/postEleve/api/v1'
 
-export const postData = async (data) => {
+export const postDataStudent = async (data) => {
     try {
         return axios.post(API_KEY_POST, data)
     } catch (error) {
@@ -23,7 +23,7 @@ export const postData = async (data) => {
 }
 
 // api update student
-const API_KEY_UPDATE = 'http://192.168.10.58:8040/eleveUpdate/api/v1'
+const API_KEY_UPDATE = 'http://192.168.10.61:8040/eleveUpdate/api/v1'
 
 export const updateDate = async (date, id) => {
     try {
@@ -34,7 +34,7 @@ export const updateDate = async (date, id) => {
 }
 
 // api delete
-const API_KEY_DELETE = 'http://192.168.10.58:8040/eleveDelete/api/v1'
+const API_KEY_DELETE = 'http://192.168.10.61:8040/eleveDelete/api/v1'
 
 export const deleteStudentData = async (id) => {
     try {

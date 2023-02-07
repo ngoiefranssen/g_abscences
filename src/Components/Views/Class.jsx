@@ -36,7 +36,7 @@ const Class = () => {
   const handleDataGet = async () => {
     const res = await getFecthData();
     setClasses(res?.data?.Data)
-    console.log(res.data?.Data)
+    // console.log(res.data?.Data)
   }
 
   const handleChangePerPage = (event, newPage) => {

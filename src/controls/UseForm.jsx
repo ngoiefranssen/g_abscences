@@ -5,16 +5,16 @@ export const UseForm = (initialValues) => { // , validateOnChange=false,validate
     const [values, setValues] = React.useState(initialValues)
     // const [errors, setErrors] = React.useState({})
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setValues({
-          ...values,
-          [name] : value
-        })
-        // if(validateOnChange) {
-        //     validate({ [name] : value })
-        // } 
-      }
+    // const handleInputChange = (e) => {
+    //     const { name, value } = e.target
+    //     setValues({
+    //       ...values,
+    //       [name] : value
+    //     })
+    //     // if(validateOnChange) {
+    //     //     validate({ [name] : value })
+    //     // } 
+    //   }
     // const resetForm = () => {
     //     setValues(initialValues)
     //     // setErrors({})
@@ -24,7 +24,7 @@ export const UseForm = (initialValues) => { // , validateOnChange=false,validate
         setValues,
         // errors,
         // setErrors,
-        handleInputChange,
+        // handleInputChange,
         // resetForm,
     }
 }
@@ -34,8 +34,8 @@ export const Form = (props) => {
     const { children, ...other } = props
     
     return(
-        <div style={{ with: '100%' }}>
-            <Stack letterSpacing={10}
+        <div>
+            <Stack
                 sx={{
                     display: "grid",
                     columnGap: 2,

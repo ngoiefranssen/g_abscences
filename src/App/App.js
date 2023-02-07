@@ -17,7 +17,7 @@ import EditAbsence from '../Components/Views/Edit/EditAbsence'
 import EditClass from '../Components/Views/Edit/EditClass'
 import EditJustification from '../Components/Views/Edit/EditJustification'
 import EditPresence from '../Components/Views/Edit/EditPresence'
-import EditStudent from '../Components/Views/Edit/EditStudent'
+// import EditStudent from '../Components/Views/Edit/EditStudent'
 
 import './App.css';
 import Home from '../Components/Pages/Home'
@@ -44,7 +44,7 @@ function App() {
         <Route path='/editclass/:id' element={<EditClass />} />
         <Route path='/editjustification/:id' element={<EditJustification />} />
         <Route path='/editpresence/:id' element={<EditPresence />} />
-        <Route path='/editstudent/:id' element={<EditStudent />} />
+        {/* <Route path='/editstudent/:id' element={<EditStudent />} /> */}
       </Routes>
     </BrowserRouter >
   );

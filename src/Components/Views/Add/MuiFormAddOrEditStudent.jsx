@@ -7,94 +7,49 @@ import DialogActions from '@mui/material/DialogActions';
 // import DialogContentText from '@mui/material/DialogContentText';
 // import DialogTitle from '@mui/material/DialogTitle';
 // import { Box, InputLabel, MenuItem, Select } from '@mui/material';
-import { UseForm, Form } from '../../../controls/UseForm'
+import { Form } from '../../../controls/UseForm'
 import Controllers from '../../../controls/Controllers'
-import { Grid, Stack } from '@mui/material';
-import { AirplanemodeInactiveRounded } from '@mui/icons-material';
+import { Stack } from '@mui/material';
+import { getAll } from '../../../Api/apiAllStudent';
+import { editableInputTypes } from '@testing-library/user-event/dist/utils';
 
-const initialValues = {
-  name: "",
-  lastname: "",
-  dn: "",
-  classe: {
-    id: ""
-  }
-}
+const MuiFormAddOrEditStudent = ({
+  student,
+  open,
+  // setOpen,
+  handleClose,
+  handleClickOpen,
+  handleSumbitElement,
+  handleInputChange,
+  handleInputChangeSelect
+}) => {
 
-const MuiFormAddOrEditStudent = () => {
-
-  // const [values, setValues] = React.useState(initialValues)
-  const [open, setOpen] = React.useState(false);
-  const [classes, setClasses] = React.useState('')
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  // const handleChange = (e) =>{
-  //   setClasses(e.target.value)
-  // }
-  // const handleChange = (newValue) => {
-  //   setValue(newValue);
-  // };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const {
-    values,
-    setValues,
-    // errors,
-    // setErrors,
-    handleInputChange,
-    // resetForm
-  } = UseForm(initialValues)
-
-  const addOrEdit = (student) => {
-    if(student.id == 0)
-    {
-      //
-    }else{
-      //
-    }
-    // resetForm()
-  }
-  React.useE
-
-  const handleEdit = async () => {
-    await AirplanemodeInactiveRounded(id)
-    getComputedStyle()
-  }
-  const handleOnSubmitAddOrEdit = (e) => {
-    e.preventDefault()
-    // if(){}
-  }
+  const [classes, setClasses] = React.useState()
 
   React.useEffect(()=>{
-    // if(id){
-    //   setValues()
-    // }
+    getAll().then(res=>setClasses(res?.data?.data))
+            .catch(err=>console.log("Error here:",err.message))
   },[])
 
   return (
     <>
-      <Button variant="contained" fullWidth onClick={handleClickOpen}>
-          Add classe
+      <Button variant="contained" onClick={handleClickOpen}>
+        Newstudent
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <Form onSumit={handleOnSubmitAddOrEdit}>
+        <Form onSumit={handleSumbitElement}>
           <Stack align="center">
             <TextField
             // autoFocus
               margin="dense"
               name='name'
-              // id="name"
+              id="name"
               label="Name student"
-              // type="name"
-              value={values.name}
-              // fullWidth
+              type="text"
+              value={student.name}
+              fullWidth
               variant="outlined"
+              onChange={handleInputChange}
             />
             <TextField
               // autoFocus
@@ -104,25 +59,25 @@ const MuiFormAddOrEditStudent = () => {
               label="Last name student"
               // type="name"
               // fullWidth
-              value={values.lastname}
+              value={student.lastname}
               variant="outlined"
+              onChange={handleInputChange}
             />
           <Controllers.MuiDatePickers
             name="dn"
             label="Hire Date"
-            value={values.dn}
+            value={student.dn}
             onChange={handleInputChange}
             variant="outlined"
           />
           <Controllers.Select
-            name="classeID"
+            name="classe"
             label="Name classes"
-            value={values.classe.id}
-            onChange={handleInputChange}
-            // options={nomClasse}
+            value={student.classe.id}
+            onChange={handleInputChangeSelect}
+            options={classes}
           />
           </Stack>
-          
           <DialogActions>
             <Controllers.Button type="submit" text="Save"/>
             <Controllers.Button onClick={handleClose} text="Cancel" />

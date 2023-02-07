@@ -39,7 +39,7 @@ const EditClass = () => {
     setEditClass(res?.data?.Data)
   }
 
-  const handleValueOnClick = async () =>{ 
+  const handleValueOnClick = async () => {
     debugger
     await apiEditClass(eclass, id)
     nagivate('/class')
