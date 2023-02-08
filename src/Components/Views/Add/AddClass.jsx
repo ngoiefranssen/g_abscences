@@ -35,7 +35,7 @@ const AddClass = () => {
           id="standard-basic"
           label="Number"
           name='numero'
-          type='text'
+          // type='text'
           variant="standard"
           onChange = { (e) => handleValueChange(e) }
         />

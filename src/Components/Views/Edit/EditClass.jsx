@@ -31,7 +31,10 @@ const EditClass = () => {
   }
   
   React.useEffect(() => {
-    handleGetData()
+    let subscriber = true
+    if(subscriber)
+      handleGetData()
+      return () => subscriber =false
   },[])
 
   const handleGetData = async () => {

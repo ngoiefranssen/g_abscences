@@ -59,7 +59,7 @@ const Student = (/* initialValues */) => {
     let subscriber = true
     if(subscriber)
       handleFetchAllDatas()
-      return() => subscriber = false
+    return() => subscriber = false
   }, [])
   
   const handleFetchAllDatas = async () =>{
@@ -98,24 +98,32 @@ const Student = (/* initialValues */) => {
     setOpen(false);
   };
 
-  const handleEditToRow = async (row) => {
-    await updateDataStudent(student ,row)
-    // setStudent(row)
+  const handlePostElement = async (e) => {
+    e.preventDefault()
+    await postDataStudent(student).then(response => {
+      console.log(response/* .student */)
+    }).catch((e) => {(
+      console.log(e)
+    )})
   }
 
-  const handlePostElement = async () => {
-    await postDataStudent(student)
+  // function (=>) for edit student
+  const handleEditToRow = async (row) => {
+    await updateDataStudent(student, row)
+    // handleFetchAllDatas()
   }
-  
-  const handleSumbitElementAddOrEdit = () => {
-    if(student?.id){
+
+  // function (=>) for post and edit student
+  const handleSumbitElementAddOrEdit = (e) => {
+    e.preventDefault()
+    if(student?.id){ // id exist
       handleEditToRow()
     }else{
       handlePostElement()
     }
   }
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, students.length - page * rowsPerPage) 
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, students?.length - page * rowsPerPage) 
 
   const deleteStudent = async (id) => {
     await deleteStudentData(id)

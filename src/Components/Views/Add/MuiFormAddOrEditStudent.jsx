@@ -10,7 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import { Form } from '../../../controls/UseForm'
 import Controllers from '../../../controls/Controllers'
 import { Stack } from '@mui/material';
-import { getAll } from '../../../Api/apiAllStudent';
+import { getFecthData } from '../../../Api/apiAllClass';
 
 const MuiFormAddOrEditStudent = ({
   student,
@@ -26,7 +26,7 @@ const MuiFormAddOrEditStudent = ({
   const [classes, setClasses] = React.useState()
 
   React.useEffect(()=>{
-    getAll().then(res=>setClasses(res?.data?.data))
+    getFecthData().then(res=>setClasses(res?.data?.Data))
             .catch(err=>console.log("Error here:",err.message))
   },[])
 
@@ -65,11 +65,13 @@ const MuiFormAddOrEditStudent = ({
             label="Hire Date"
             value={student.dn}
             onChange={handleInputChange}
+            type="text"
             variant="outlined"
           />
           <Controllers.Select
             name="classe"
             label="Name classes"
+            type="text"
             value={student.classe.id}
             onChange={handleInputChangeSelect}
             options={classes}

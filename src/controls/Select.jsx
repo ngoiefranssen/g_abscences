@@ -23,9 +23,9 @@ const Select = (props) => {
                             key={item?.id}
                             value={item?.id}
                             control={<Radio />}
-                            label={item?.nom}
+                            label={item?.numero}
                         >
-                            {item?.nom} 
+                            {item?.numero} 
                         </MenuItem>
                     ))
                 }

@@ -15,12 +15,10 @@ export const getFecthData = async () => {
 // api post class
 
 const API_KEY_POST = 'http://192.168.10.61:8040/postClasse/api/v1'
-// const API_KEY_POST = 'http://192.168.10.58:8040/postClasse/api'
 
 export const postClassData = async (data) => {
     try {
         return axios.post(API_KEY_POST, data)
-        // return axios.post(`${API_KEY_POST}/v1`, data)
     } catch (error) {
         console.log('Error while calling post user api', error.message)
     }

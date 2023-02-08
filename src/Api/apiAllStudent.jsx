@@ -3,7 +3,7 @@ import axios from "axios"
 // api get all students
 const API_KEY_GET = 'http://192.168.10.61:8040/listeEleve/api/v1/1'
 
-export const getAll = async () =>{
+export const getAll = async () => {
     try {
         return axios.get(API_KEY_GET)
     } catch (error) {
