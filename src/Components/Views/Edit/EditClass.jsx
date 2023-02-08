@@ -23,7 +23,6 @@ const EditClass = () => {
   const[eclass, setEditClass] = React.useState(initialValue)
   const nagivate = useNavigate()
   const { id } = useParams()
-  
 
   const handleValueChange = (e) => {
     e.preventDefault()
@@ -34,11 +33,11 @@ const EditClass = () => {
     let subscriber = true
     if(subscriber)
       handleGetData()
-      return () => subscriber =false
+    return () => subscriber = false
   },[])
 
   const handleGetData = async () => {
-    let res = await getFecthData(id)
+    let res = await getFecthData()
     setEditClass(res?.data?.Data)
   }
 

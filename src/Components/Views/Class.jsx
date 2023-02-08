@@ -11,18 +11,16 @@ import {
   TableRow,
 } from '@mui/material'
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, /* useNavigate */ } from 'react-router-dom'
 // import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { getFecthData, delClass } from '../../Api/apiAllClass'
 
-
 const Class = () => {
-
   // const history=()
   const [classes, setClasses] = React.useState([])
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
