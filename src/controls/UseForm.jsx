@@ -37,10 +37,9 @@ export const Form = (props) => {
         <div>
             <Stack
                 sx={{
-                    display: "grid",
-                    columnGap: 2,
-                    rowGap: 1,
-                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    display: "block",
+                    padding: "2.5em",
+                    // gridTemplateColumns: 'repeat(2, 1fr)',
                 }}
             >
                 <form autoComplete='off' {...other}>

@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // api get all students
-const API_KEY_GET = 'http://192.168.10.61:8040/listeEleve/api/v1/1'
+const API_KEY_GET = 'http://192.168.10.61:8040/listeEleve/api/v1'
 
 export const getAll = async () => {
     try {
@@ -10,7 +10,13 @@ export const getAll = async () => {
         console.log('Error while calling get user api', error.message)
     }
 }
-
+export const getAllByClass = async (id) => {
+    try {
+        return axios.get(`${API_KEY_GET}/${id}`)
+    } catch (error) {
+        console.log('Error while calling get user api', error.message)
+    }
+}
 // api post student
 const API_KEY_POST = 'http://192.168.10.61:8040/postEleve/api/v1'
 
@@ -26,7 +32,7 @@ export const postDataStudent = async (data) => {
 }
 
 // api update student
-const API_KEY_UPDATE = 'http://192.168.10.61:8040/eleveUpdate/api/v1'
+const API_KEY_UPDATE = 'http://192.168.10.61:8040/eleveUpdate/api/v1/1'
 
 export const updateDataStudent = async (date, id) => {
     try {

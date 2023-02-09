@@ -15,11 +15,17 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
-import { deleteStudentData, getAll, postDataStudent, updateDataStudent } from '../../Api/apiAllStudent'
+import {
+  deleteStudentData,
+  getAll,
+  getAllByClass,
+  postDataStudent,
+  updateDataStudent
+} from '../../Api/apiAllStudent'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import MuiFormAddOrEditStudent from '../Views/Add/MuiFormAddOrEditStudent'
-import Moment from 'react-moment'
-
+import { useParams } from 'react-router-dom'
+import SelectedClasse from '../../selectedClasses/SelectedClasse'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -30,6 +36,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       fontSize: 14,
     },
 }));
+
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
@@ -40,43 +47,48 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const Student = (/* initialValues */) => {
+const Student = () => {
 
   const [open, setOpen] = React.useState(false);
+  const [selectedClass, setSelectedClass] = React.useState("");
   const [students, setStudents] = React.useState([]);
   const [student, setStudent] = React.useState({
     name: "",
     lastname: "",
     // dn: "",
-    dn: null,
+    dn: "",
     classe: {
       id: ""
     }
   })
-
+  const {id} = useParams()
+  // const navigate = useNavigate()
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
   // const [search, setSearch] = React.useState('')
 
-  React.useEffect(() =>{
+  React.useEffect(() => {
     let subscriber = true
     if(subscriber)
       handleFetchAllDatas()
     return() => subscriber = false
   }, [])
   
-  const handleFetchAllDatas = async () =>{
+  const handleFetchAllDatas = async () => {
     const res = await getAll()
     // console.log(res?.data?.data)
     setStudents(res?.data?.data)
   }
-  const handleChangePerPage = (event, newPage) =>{
+
+  const handleChangePerPage = (event, newPage) => {
     setPage(newPage);
   }
+
   const handleChangeRowsPerPage = (event) =>{
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -87,17 +99,17 @@ const Student = (/* initialValues */) => {
       ...student,
       [name] : value
     })
+    // if(validateOnChange)
+    // {
+    //   setStudent({ [name] : value })
+    // }else{
+    //   setStudent()
+    // }
+      
   }
+
   const handleChangeDate = (e) => {
-    // const { name, value } = e.target
-    // debugger
-    // console.log("Date", e.target.value)
     let d = e.target.value.$d
-    // console.log("Date to date", d.toDateString)
-    // console.log("Date ISO", d.toISOString)
-    // const ds = Moment(d).format("YYYY-MM-DD")
-    // console.log("@@@DATE", ds )
-    // console.log("Date ISO2", e.target.value.$d.toISOString.split('T'))
     setStudent({
       ...student,
     dn : d
@@ -111,23 +123,22 @@ const Student = (/* initialValues */) => {
       [name] : {id:value}
     })
   }
-
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handlePostElement = async () => {
+  const handlePostStudent = async () => {
     await postDataStudent(student)
     .then((response) => {
       console.log("CA PASSE", response)
-  }).catch((error) => {
-    console.log("ECHEC",error)
-  })
+    }).catch((error) => {
+      console.log("ECHEC",error)
+    })
     console.log("Eleve enregistre",student)
+    // navigate('/student')
   }
-  // Edit (=>)
-  const handleEditToRow = async (row) => {
-    await updateDataStudent(row)
+  // Edit student
+  const handleEditToRow = async () => {
+    await updateDataStudent(student, id)
   }
 
   // EditOrAdd (=>)
@@ -136,24 +147,41 @@ const Student = (/* initialValues */) => {
     if(student?.id){ // id exist
       handleEditToRow()
     }else{
-      handlePostElement()
+      handlePostStudent()
     }
   }
-
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, students?.length - page * rowsPerPage) 
 
   const deleteStudent = async (id) => {
     await deleteStudentData(id)
     handleFetchAllDatas()
   }
-
+  const handleOnChangeClass=(e)=>{
+    getAllByClass(e.target.value)
+      .then(res=>setStudents(res?.data?.data))
+      .catch(err=>console.error("error here:",err.message))
+  }
   return (
     <div style={{ width: "90%", margin: "50px auto 0 auto" }}>
+      <Grid position='revert-layer' height={3}>
+        <SelectedClasse
+          selectedClass={selectedClass}
+          setSelectedClass={setSelectedClass}
+          handleOnChangeClass={handleOnChangeClass}
+        />
+      {/* <select value={selectedCLass} onChange={handleOnChangeClass} >
+        <option value=""></option>
+        <option value="14">1er co</option>
+        <option value="15">2er co</option>
+
+      </select> */}
+      </Grid>
     <Grid position='revert-layer' height={20} margin="25px" marginLeft={137}>
       {/* <form>
         <TextField variant="contained" onChange={ (e) => setSearch(e.target.value) } />
       </form> */}
         <MuiFormAddOrEditStudent
+          sx={{ ml: "25px"}}
           student={student}
           open={open}
           setOpen={setOpen}
@@ -198,7 +226,7 @@ const Student = (/* initialValues */) => {
                   <StyledTableCell>{st.date}</StyledTableCell>
                   <StyledTableCell>{st.eleves.nomClasse}</StyledTableCell>
                   <StyledTableCell>
-                    <Button onClick={() =>{
+                    <Button onClick={() => {
                       handleEditToRow(st)
                       handleClickOpen()
                       }}><EditIcon /></Button>

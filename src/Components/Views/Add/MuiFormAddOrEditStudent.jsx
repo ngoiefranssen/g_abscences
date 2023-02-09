@@ -27,21 +27,15 @@ const MuiFormAddOrEditStudent = ({
   const [classes, setClasses] = React.useState()
 
   React.useEffect(()=>{
-    getFecthData().then(res=>setClasses(res?.data?.Data))
-                  .catch(err=>console.log("Error here:",err.message))
+    getFecthData()
+      .then(res=>setClasses(res?.data?.Data))
+      .catch(err=>console.log("Error here:",err.message))
   },[])
 
-  // const formatDate = () => {
-  //   var dn = {year: "numeric", month: "long", day: "numeric" }
-  //   return new Date().toDateString([], dn)
+  // const dn = () => {
+  //   var formatDateInitial = {year: "numeric", month: "numeric", day: "numeric" }
+  //   return new Date().toDateString([], formatDate)
   // }
-  // const formatDateInitial = () => {
-  //   var formatOptions = {year: "numeric", month: "long", day: "numeric" }
-  //   return new Date().toDateString([], formatOptions)
-  // }
-
-  // const dn = new Date()
-  // let formatDate = dn.toDateString  
 
   return (
     <>

@@ -13,7 +13,6 @@ const MuiDatePickers = (props) => {
     },
   });
   
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3}>
@@ -21,7 +20,7 @@ const MuiDatePickers = (props) => {
           label= {label}
           name={name}
           value={value}
-          onChange={(date) => onChange(convertToDefEventParam(name, date))}
+          onChange={ (date) => onChange(convertToDefEventParam(name, date))}
           renderInput={(params) => <TextField {...params} helperText="Clear Initial State"/>}
         />
       </Stack>

@@ -36,7 +36,7 @@ const Class = () => {
     setClasses(res?.data?.Data)
     // console.log(res.data?.Data)
   }
-
+  
   const handleChangePerPage = (event, newPage) => {
     setPage(newPage)
   }
