@@ -15,9 +15,12 @@ export const getAll = async () => {
 const API_KEY_POST = 'http://192.168.10.61:8040/postEleve/api/v1'
 
 export const postDataStudent = async (data) => {
+    // debugger
     try {
+        // debugger
         return axios.post(API_KEY_POST, data)
     } catch (error) {
+        debugger
         console.log('Error while calling post user api', error.message)
     }
 }

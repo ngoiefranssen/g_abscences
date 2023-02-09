@@ -18,6 +18,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import { deleteStudentData, getAll, postDataStudent, updateDataStudent } from '../../Api/apiAllStudent'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import MuiFormAddOrEditStudent from '../Views/Add/MuiFormAddOrEditStudent'
+import Moment from 'react-moment'
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -45,7 +47,8 @@ const Student = (/* initialValues */) => {
   const [student, setStudent] = React.useState({
     name: "",
     lastname: "",
-    dn: "",
+    // dn: "",
+    dn: null,
     classe: {
       id: ""
     }
@@ -85,6 +88,21 @@ const Student = (/* initialValues */) => {
       [name] : value
     })
   }
+  const handleChangeDate = (e) => {
+    // const { name, value } = e.target
+    // debugger
+    // console.log("Date", e.target.value)
+    let d = e.target.value.$d
+    // console.log("Date to date", d.toDateString)
+    // console.log("Date ISO", d.toISOString)
+    // const ds = Moment(d).format("YYYY-MM-DD")
+    // console.log("@@@DATE", ds )
+    // console.log("Date ISO2", e.target.value.$d.toISOString.split('T'))
+    setStudent({
+      ...student,
+    dn : d
+    })
+  }
 
   const handleInputChangeSelect = (e) => {
     const { name, value } = e.target
@@ -98,22 +116,21 @@ const Student = (/* initialValues */) => {
     setOpen(false);
   };
 
-  const handlePostElement = async (e) => {
-    e.preventDefault()
-    await postDataStudent(student).then(response => {
-      console.log(response/* .student */)
-    }).catch((e) => {(
-      console.log(e)
-    )})
+  const handlePostElement = async () => {
+    await postDataStudent(student)
+    .then((response) => {
+      console.log("CA PASSE", response)
+  }).catch((error) => {
+    console.log("ECHEC",error)
+  })
+    console.log("Eleve enregistre",student)
   }
-
-  // function (=>) for edit student
+  // Edit (=>)
   const handleEditToRow = async (row) => {
-    await updateDataStudent(student, row)
-    // handleFetchAllDatas()
+    await updateDataStudent(row)
   }
 
-  // function (=>) for post and edit student
+  // EditOrAdd (=>)
   const handleSumbitElementAddOrEdit = (e) => {
     e.preventDefault()
     if(student?.id){ // id exist
@@ -145,6 +162,7 @@ const Student = (/* initialValues */) => {
           handleSumbitElementAddOrEdit={handleSumbitElementAddOrEdit}
           handleInputChange={handleInputChange}
           handleInputChangeSelect={handleInputChangeSelect}
+          handleChangeDate={handleChangeDate}
         />
     </Grid>
       <TableContainer component={Paper}>

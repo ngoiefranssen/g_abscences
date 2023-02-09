@@ -20,23 +20,36 @@ const MuiFormAddOrEditStudent = ({
   handleClickOpen,
   handleSumbitElementAddOrEdit,
   handleInputChange,
-  handleInputChangeSelect
+  handleInputChangeSelect,
+  handleChangeDate
 }) => {
 
   const [classes, setClasses] = React.useState()
 
   React.useEffect(()=>{
     getFecthData().then(res=>setClasses(res?.data?.Data))
-            .catch(err=>console.log("Error here:",err.message))
+                  .catch(err=>console.log("Error here:",err.message))
   },[])
+
+  // const formatDate = () => {
+  //   var dn = {year: "numeric", month: "long", day: "numeric" }
+  //   return new Date().toDateString([], dn)
+  // }
+  // const formatDateInitial = () => {
+  //   var formatOptions = {year: "numeric", month: "long", day: "numeric" }
+  //   return new Date().toDateString([], formatOptions)
+  // }
+
+  // const dn = new Date()
+  // let formatDate = dn.toDateString  
 
   return (
     <>
       <Button variant="contained" onClick={handleClickOpen}>
         Newstudent
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <Form onSumit={handleSumbitElementAddOrEdit}>
+      <Dialog open={open} onClose={handleClose} /* fullWidth="md" */>
+        <Form onSubmit={handleSumbitElementAddOrEdit}>
           <Stack align="center">
             <TextField
               margin="dense"
@@ -62,10 +75,13 @@ const MuiFormAddOrEditStudent = ({
             />
           <Controllers.MuiDatePickers
             name="dn"
-            label="Hire Date"
+            label="Date de naissance"
+            // value={student.formatDate}
             value={student.dn}
-            onChange={handleInputChange}
-            type="text"
+            // onChange={handleInputChange}
+            onChange={handleChangeDate}
+            type="date"
+            fullWidth
             variant="outlined"
           />
           <Controllers.Select
@@ -73,12 +89,13 @@ const MuiFormAddOrEditStudent = ({
             label="Name classes"
             type="text"
             value={student.classe.id}
+            fullWidth
             onChange={handleInputChangeSelect}
             options={classes}
           />
           </Stack>
           <DialogActions>
-            <Controllers.Button type="submit" text="Save"/>
+            <Controllers.Button type='submit' text="Save"/>
             <Controllers.Button onClick={handleClose} text="Cancel" />
           </DialogActions>
         </Form>
