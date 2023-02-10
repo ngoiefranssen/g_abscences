@@ -1,24 +1,43 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material'
 import React from 'react'
 
-const SelectedClasse = ({}) => {
+const SelectedClasse = ({
+    selectedClass,
+    setSelectedClass,
+    student,
+    handleOnChangeClass,
+}) => {
     return (
-        <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Grid>
+            <FormControl sx={{
+                m:3,
+                width: "17%",
+                marginLeft: "70%",
+            }} size="small">
+                <InputLabel id="demo-simple-select-label">Classes</InputLabel>
                 <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value=""
-                    label="Age"
-                    // onChange={handleChange}
-                    >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    id="classe"
+                    name="classe"
+                    value={selectedClass}
+                    // label="Classes"
+                    onChange={handleOnChangeClass}
+                >
+                    <MenuItem value="">None</MenuItem>
+                    {/* {
+                        ?.map((classed) => (
+                            <MenuItem
+                                value={20}
+                                key={classed?.id}
+                                label={classed?.numero}
+                            >
+                                {classed?.numero}
+                            </MenuItem>
+                        ))
+                    } */}
+                    
                 </Select>
             </FormControl>
-        </Box>
+        </Grid>
     )
 }
 

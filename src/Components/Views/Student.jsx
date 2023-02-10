@@ -99,13 +99,6 @@ const Student = () => {
       ...student,
       [name] : value
     })
-    // if(validateOnChange)
-    // {
-    //   setStudent({ [name] : value })
-    // }else{
-    //   setStudent()
-    // }
-      
   }
 
   const handleChangeDate = (e) => {
@@ -163,25 +156,26 @@ const Student = () => {
   }
   return (
     <div style={{ width: "90%", margin: "50px auto 0 auto" }}>
-      <Grid position='revert-layer' height={3}>
-        <SelectedClasse
+      <Grid position='revert-layer' height="0.5px">
+      <SelectedClasse
+          student={student}
           selectedClass={selectedClass}
           setSelectedClass={setSelectedClass}
           handleOnChangeClass={handleOnChangeClass}
         />
-      {/* <select value={selectedCLass} onChange={handleOnChangeClass} >
+      {/* <select value={selectedCLass} onChange={handleOnChangeClass}>
         <option value=""></option>
         <option value="14">1er co</option>
         <option value="15">2er co</option>
 
       </select> */}
       </Grid>
-    <Grid position='revert-layer' height={20} margin="25px" marginLeft={137}>
+    <Grid position='revert-layer' height={30} margin="25px" marginLeft={134}>
+   
       {/* <form>
         <TextField variant="contained" onChange={ (e) => setSearch(e.target.value) } />
       </form> */}
         <MuiFormAddOrEditStudent
-          sx={{ ml: "25px"}}
           student={student}
           open={open}
           setOpen={setOpen}

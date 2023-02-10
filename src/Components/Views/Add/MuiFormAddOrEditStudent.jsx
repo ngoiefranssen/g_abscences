@@ -9,7 +9,7 @@ import DialogActions from '@mui/material/DialogActions';
 // import { Box, InputLabel, MenuItem, Select } from '@mui/material';
 import { Form } from '../../../controls/UseForm'
 import Controllers from '../../../controls/Controllers'
-import { Stack } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 import { getFecthData } from '../../../Api/apiAllClass';
 
 const MuiFormAddOrEditStudent = ({
@@ -38,7 +38,8 @@ const MuiFormAddOrEditStudent = ({
   // }
 
   return (
-    <>
+    
+    <Grid sx={{ ml: "25px"}}>
       <Button variant="contained" onClick={handleClickOpen}>
         Newstudent
       </Button>
@@ -51,7 +52,7 @@ const MuiFormAddOrEditStudent = ({
               id="name"
               label="Name student"
               type="text"
-              value={student.name}
+              value={student?.name}
               fullWidth
               variant="outlined"
               onChange={handleInputChange}
@@ -63,16 +64,14 @@ const MuiFormAddOrEditStudent = ({
               label="Last name student"
               type="text"
               fullWidth
-              value={student.lastname}
+              value={student?.lastname}
               variant="outlined"
               onChange={handleInputChange}
             />
           <Controllers.MuiDatePickers
             name="dn"
             label="Date de naissance"
-            // value={student.formatDate}
-            value={student.dn}
-            // onChange={handleInputChange}
+            value={student?.dn}
             onChange={handleChangeDate}
             type="date"
             fullWidth
@@ -82,7 +81,7 @@ const MuiFormAddOrEditStudent = ({
             name="classe"
             label="Name classes"
             type="text"
-            value={student.classe.id}
+            value={student?.classe?.id}
             fullWidth
             onChange={handleInputChangeSelect}
             options={classes}
@@ -94,7 +93,7 @@ const MuiFormAddOrEditStudent = ({
           </DialogActions>
         </Form>
       </Dialog>
-    </>
+    </Grid>
   );
 }
 

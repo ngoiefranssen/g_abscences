@@ -15,17 +15,16 @@ const Select = (props) => {
             <InputLabel>{label}</InputLabel>
             <MuiSelect label={label} name={name} value={value} onChange={onChange}>
                 <MenuItem value=''>None</MenuItem>
-                
                 {
                     options?.map(
-                        (item) => ( 
+                        (item) => (
                         <MenuItem
                             key={item?.id}
                             value={item?.id}
                             control={<Radio />}
                             label={item?.numero}
                         >
-                            {item?.numero} 
+                            {item?.numero}
                         </MenuItem>
                     ))
                 }

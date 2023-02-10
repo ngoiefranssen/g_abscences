@@ -42,6 +42,15 @@ export const updateDataStudent = async (date, id) => {
     }
 }
 
+// api updateBy student
+// export const updateDataByStudent = async (date, id) => {
+//     try {
+//         return axios.put(`${API_KEY_UPDATE}/${id}`, date)
+//     } catch (error) {
+//         console.log('Error while calling update user api', error.message)
+//     }
+// }
+
 // api delete
 const API_KEY_DELETE = 'http://192.168.10.61:8040/eleveDelete/api/v1'
 
