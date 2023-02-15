@@ -2,11 +2,11 @@ import axios from "axios"
 
 // api get all classes
 
-const API_KEY_GET = 'http://192.168.10.61:8040/classe/api/get'
+const API_KEY_GET = 'http://192.168.10.57:8040/classe/api/get'
 
 export const getFecthData = async () => {
     try {
-        return await axios.get(API_KEY_GET);
+        return axios.get(API_KEY_GET);
     } catch (error) {
         console.log('Error while calling get user api', error.message)
     }  
@@ -14,7 +14,7 @@ export const getFecthData = async () => {
 
 // api post class
 
-const API_KEY_POST = 'http://192.168.10.61:8040/postClasse/api/v1'
+const API_KEY_POST = 'http://192.168.10.57:8040/postClasse/api/v1'
 
 export const postClassData = async (data) => {
     try {
@@ -25,7 +25,7 @@ export const postClassData = async (data) => {
 }
 
 // api edit class
-const API_KEY_EDIT = 'http://192.168.10.61:8040/classe/api/upDate'
+const API_KEY_EDIT = 'http://192.168.10.57:8040/classe/api/upDate'
 
 export const apiEditClass = async (data, id) => {
     debugger
@@ -37,7 +37,7 @@ export const apiEditClass = async (data, id) => {
 }
 
 // api delete class
-const API_KEY_DELETE = 'http://192.168.10.61:8040/classe/api/delete'
+const API_KEY_DELETE = 'http://192.168.10.57:8040/classe/api/delete'
 
 export const delClass = async (id) =>{
     try {

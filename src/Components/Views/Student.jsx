@@ -1,7 +1,11 @@
 import {
   Button,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   styled,
   Table,
   TableBody,
@@ -55,7 +59,6 @@ const Student = () => {
   const [student, setStudent] = React.useState({
     name: "",
     lastname: "",
-    // dn: "",
     dn: "",
     classe: {
       id: ""
@@ -70,7 +73,7 @@ const Student = () => {
   React.useEffect(() => {
     let subscriber = true
     if(subscriber)
-      handleFetchAllDatas()
+      handleFetchAllDatas(id)
     return() => subscriber = false
   }, [])
   
@@ -135,8 +138,8 @@ const Student = () => {
   }
 
   // EditOrAdd (=>)
-  const handleSumbitElementAddOrEdit = (e) => {
-    e.preventDefault()
+  const handleSumbitElementAddOrEdit = () => {
+    // e.preventDefault()
     if(student?.id){ // id exist
       handleEditToRow()
     }else{
@@ -157,12 +160,40 @@ const Student = () => {
   return (
     <div style={{ width: "90%", margin: "50px auto 0 auto" }}>
       <Grid position='revert-layer' height="0.5px">
-      <SelectedClasse
+        <FormControl sx={{
+                m:3,
+                width: "17%",
+                marginLeft: "70%",
+            }} size="small"
+        >
+          <InputLabel id="demo-simple-select-label">Classes</InputLabel>
+          <Select
+            id="classe"
+            name="classe"
+            value={selectedClass}s
+            // label="Classes"
+            onChange={handleOnChangeClass}
+          >
+            <MenuItem value="">None</MenuItem>
+            {
+              students?.map((classed) => (
+                <MenuItem
+                  // value={classe?.id}s
+                  key={classed?.id}
+                  label={classed?.numero}
+                  >
+                  {classed?.numero}
+                </MenuItem>
+                        ))
+                    }
+                </Select>
+        </FormControl>
+      {/* <SelectedClasse
           student={student}
           selectedClass={selectedClass}
           setSelectedClass={setSelectedClass}
           handleOnChangeClass={handleOnChangeClass}
-        />
+        /> */}
       {/* <select value={selectedCLass} onChange={handleOnChangeClass}>
         <option value=""></option>
         <option value="14">1er co</option>
