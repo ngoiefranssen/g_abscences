@@ -28,8 +28,8 @@ const MuiFormAddOrEditStudent = ({
 
   React.useEffect(()=>{
     getFecthData()
-      .then(res=>setClasses(res?.data?.Data))
-      .catch(err=>console.log("Error here:",err.message))
+      .then((res)=>{setClasses(res?.data?.Data)})
+      .catch((err)=>{console.log("Error here:",err.message)})
   },[])
 
   // const dn = () => {
@@ -39,10 +39,10 @@ const MuiFormAddOrEditStudent = ({
 
   return (
     
-    <Grid sx={{ ml: "25px"}}>
-      <Button variant="contained" onClick={handleClickOpen}>
-        Newstudent
-      </Button>
+    <Grid sx={{ ml: "56px"}}>
+        <Button variant="contained" onClick={handleClickOpen}>
+          Ajouter
+        </Button>
       <Dialog open={open} onClose={handleClose} /* fullWidth="md" */>
         <Form onSubmit={handleSumbitElementAddOrEdit}>
           <Stack align="center">

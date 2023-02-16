@@ -73,12 +73,12 @@ const Student = () => {
   React.useEffect(() => {
     let subscriber = true
     if(subscriber)
-      handleFetchAllDatas(id)
+      handleFetchAllDatas()
     return() => subscriber = false
   }, [])
   
   const handleFetchAllDatas = async () => {
-    const res = await getAll()
+    const res = await getAll(id)
     // console.log(res?.data?.data)
     setStudents(res?.data?.data)
   }
@@ -132,6 +132,7 @@ const Student = () => {
     console.log("Eleve enregistre",student)
     // navigate('/student')
   }
+
   // Edit student
   const handleEditToRow = async () => {
     await updateDataStudent(student, id)
@@ -160,17 +161,19 @@ const Student = () => {
   return (
     <div style={{ width: "90%", margin: "50px auto 0 auto" }}>
       <Grid position='revert-layer' height="0.5px">
-        <FormControl sx={{
-                m:3,
-                width: "17%",
-                marginLeft: "70%",
-            }} size="small"
+        <FormControl
+          sx={{
+            m:3,
+            width: "17%",
+            marginLeft: "72%",
+          }}
+          size="small"
         >
           <InputLabel id="demo-simple-select-label">Classes</InputLabel>
           <Select
             id="classe"
             name="classe"
-            value={selectedClass}s
+            value={selectedClass}
             // label="Classes"
             onChange={handleOnChangeClass}
           >
@@ -178,11 +181,11 @@ const Student = () => {
             {
               students?.map((classed) => (
                 <MenuItem
-                  // value={classe?.id}s
+                  value={student?.classe?.id}
                   key={classed?.id}
                   label={classed?.numero}
                   >
-                  {classed?.numero}
+                  {student?.classe?.numero}
                 </MenuItem>
                         ))
                     }
